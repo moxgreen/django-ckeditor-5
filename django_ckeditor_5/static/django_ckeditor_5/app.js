@@ -1,5 +1,7 @@
 import ClassicEditor from './src/ckeditor';
 import './src/override-django.css';
+import MathType from '@wiris/mathtype-ckeditor5';
+
 
 window.ClassicEditor = ClassicEditor;
 window.ckeditorRegisterCallback = registerCallback;
@@ -95,6 +97,16 @@ function createEditors(element = document.body) {
             'fileTypes': upload_file_types
         };
         config.licenseKey = 'GPL';
+
+        if (!config.extraPlugins) {
+            config.extraPlugins = [];
+        }
+        if (config.extraPlugins.indexOf("MathType") === -1) {
+            config.extraPlugins.push("MathType");
+        }
+        
+       
+
         ClassicEditor.create(
             editorEl,
             config
